@@ -1,5 +1,4 @@
 import java.io.*;
-import java.util.*;
 
 public class Main_BJ_2116 {
     public static int searchMax(int[][] dice, int down, int h, int diceN) {
