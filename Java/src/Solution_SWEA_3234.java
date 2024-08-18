@@ -8,7 +8,7 @@ public class Solution_SWEA_3234 {
 	static int[] m = new int[9];
 	static boolean check[];
 	static int cnt;
-	
+
 	public static void main(String[] args) throws Exception {
 		T = Integer.parseInt(br.readLine());
 		for (int tc = 1; tc <= T; tc++) {
