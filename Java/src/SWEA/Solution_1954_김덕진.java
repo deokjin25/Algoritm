@@ -5,6 +5,7 @@ public class Solution_1954_김덕진 {
 	static int map[][];
 
 	public static void main(String[] args) {
+		@SuppressWarnings("resource")
 		Scanner sc = new Scanner(System.in);
 		int T = sc.nextInt();
 		sc.nextLine();

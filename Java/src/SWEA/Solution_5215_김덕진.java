@@ -43,8 +43,6 @@ public class Solution_5215_김덕진 {
 	}
 
 	private static int hamburger(int idx, int totalCal, int scoreSum, int maxScore) {
-		
-		
 		if(idx == N) {
 			if(scoreSum > maxScore) {
 				maxScore=scoreSum;				

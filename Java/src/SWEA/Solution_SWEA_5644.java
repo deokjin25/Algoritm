@@ -1,8 +1,6 @@
 package SWEA;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.StringTokenizer;
+import java.io.*;
+import java.util.*;
  
 public class Solution_SWEA_5644 {
     public static int T, M, A, answer;
@@ -51,7 +49,7 @@ public class Solution_SWEA_5644 {
                 int r = bcs[i][0] - 1;
                 int c = bcs[i][1] - 1;
                 int dis = bcs[i][2];
-                int charge = bcs[i][3];
+//                int charge = bcs[i][3];
  
                 for (int j = -dis; j <= dis; j++) {
                     for (int k = -dis; k <= dis; k++) {
