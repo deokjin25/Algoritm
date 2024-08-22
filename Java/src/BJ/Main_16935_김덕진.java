@@ -9,7 +9,6 @@ public class Main_16935_김덕진 {
 	static int[][] map;
 	static int[] arr;	//command 배열
 	static Deque<Integer> dq = new ArrayDeque<>();
-	static boolean flag;	//행/열 바뀔거 고려한 변수, false면 그대로 true면 행열 바꿔서 진행 
 	
 	public static void main(String[] args) throws Exception {
 		st = new StringTokenizer(br.readLine());
@@ -17,14 +16,8 @@ public class Main_16935_김덕진 {
 		M = Integer.parseInt(st.nextToken());
 		R = Integer.parseInt(st.nextToken());
 		
-		// 큰 값으로 배열 최대화 시켜두기(행/열 바뀌었을 때 별다른 조치없이 그대로 진행하기 위해서)
-		if(N>=M) {
-			map = new int[N][N];
-		}else {
-			map = new int[M][M];
-		}
-		
-		
+		map = new int[N][M];
+
 		for (int i = 0; i < N; i++) {
 			st = new StringTokenizer(br.readLine());
 			for (int j = 0; j < M; j++) {
@@ -43,20 +36,11 @@ public class Main_16935_김덕진 {
 			command(arr[i]);			
 		}
 		
-		if(!flag) {
-			for (int i = 0; i < N; i++) {
-				for (int j = 0; j < M; j++) {
-					System.out.printf("%d ", map[i][j]);
-				}
-				System.out.println();
-			}			
-		}else {
-			for (int i = 0; i < M; i++) {
-				for (int j = 0; j < N; j++) {
-					System.out.printf("%d ", map[i][j]);
-				}
-				System.out.println();
-			}	
+		for (int i = 0; i < map.length; i++) {
+			for (int j = 0; j < map[0].length; j++) {
+				System.out.printf("%d ", map[i][j]);
+			}
+			System.out.println();
 		}
 		
 		
@@ -81,13 +65,9 @@ public class Main_16935_김덕진 {
 	}
 
 	private static void partRoll90() {
-		int x = N;	//행 길이
-		int y = M;	//열 길이
-		if(flag) {
-			x=M;
-			y=N; 
-		}
-		
+		int x = map.length;	//행 길이
+		int y = map[0].length;	//열 길이
+
 		//문제에서 주어진 4분면 기준임.
 		for (int i = 0; i < x/2; i++) {	//1사분면
 			for (int j = 0; j < y/2; j++) {
@@ -122,10 +102,6 @@ public class Main_16935_김덕진 {
 			}
 		}
 		
-		
-		
-		
-		
 	}
 
 	private static void roll270() {
@@ -136,39 +112,28 @@ public class Main_16935_김덕진 {
 	}
 
 	private static void roll90() {
-		if(flag) {	//true면 반대로(m,n 형태) 진행
-			for (int i = 0; i < M; i++) {
-				for (int j = 0; j < N; j++) {
-					dq.addLast(map[i][j]);
-				}
+		//행열 뒤바뀜
+		int tmp = N;
+		N = M;
+		M = tmp;
+		
+		//행열 바뀐 배열
+		int tmpArr[][] = new int[N][M];
+		
+		for (int i = 0; i < map.length; i++) {
+			for (int j = 0; j < map[0].length; j++) {
+				dq.addLast(map[i][j]);
 			}
-			
-			//반대로 넣을 거니까 flag 바꿔주기
-			flag = false;
-			for (int j = M-1; j >= 0; j--) {
-				for (int i = 0; i < N; i++) {
-					map[i][j] = dq.pollFirst();
-				}
-			}
-
-		}else {		//false면 그대로(n,m 형태) 진행
-			for (int i = 0; i < N; i++) {
-				for (int j = 0; j < M; j++) {
-					dq.addLast(map[i][j]);
-				}
-			}
-			
-			//반대로 넣을 거니까 flag 바꿔주기
-			flag = true;
-			for (int j = N-1; j >= 0; j--) {
-				for (int i = 0; i < M; i++) {
-					map[i][j] = dq.pollFirst();
-				}
-			}
-						
-			
 		}
 		
+		for (int j = M-1; j >= 0; j--) {
+			for (int i = 0; i < N; i++) {
+				tmpArr[i][j] = dq.pollFirst();
+			}
+		}
+		
+		//다른 command에서 map을 가지고 실행하기 때문에 map에 tmpArr 참조하도록 설정
+		map = tmpArr;
 	}
 
 	private static void leftRight() {
