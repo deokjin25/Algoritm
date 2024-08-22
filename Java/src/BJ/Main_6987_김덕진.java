@@ -29,13 +29,17 @@ public class Main_6987_김덕진 {
 			int lose = 0;
 			int draw = 0;
 			int drawCnt = 0;
+            int winCnt = 0;
+            int LoseCnt = 0;
 			for (int j = 0; j < 18; j+=3) {
+                if(arr[i][j]==5) winCnt++;
+                if(arr[i][j+2]==5) LoseCnt++;
 				win += arr[i][j];
 				draw += arr[i][j+1];
 				lose += arr[i][j+2];
 				if(arr[i][j+1] > 0) drawCnt++;
 			}
-			if(win+lose+draw != 30 || win != lose || draw%2 != 0 || drawCnt == 1) {
+			if(winCnt != LoseCnt || win+lose+draw != 30 || win != lose || draw%2 != 0 || drawCnt%2 == 1) {
 				System.out.printf("0 ");				
 			}else {
 				System.out.printf("1 ");
