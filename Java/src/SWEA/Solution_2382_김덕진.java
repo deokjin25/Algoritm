@@ -2,11 +2,19 @@ package SWEA;
 
 import java.io.*;
 import java.util.*;
-
+/*
+ * 첫번째, map 배열에 모인 군집 번호를 String으로 더해줘서 관리.
+ * >> 군집 번호가 2자리가 넘어가면 배열 이동 관리도 어렵고 합치는 것도 어렵고, 합쳤을 때 번호들이 난잡해져서 관리가 안됨.
+ * 두번째, map 배열에 미생물 배열을 집어넣은 3차원으로 시도
+ * >> 제한시간초과 발생(모든 i,j에 대해서 미생물 배열이 몇 개인지 K번 만큼을 매번 순회해서 인듯하다.)
+ * 세번째, map에는 군집 수만 기록하고 미생물 배열의 x,y를 가져와서 map에 1 이상인 x,y좌표랑 비교대조 해보자.
+ * >> 성공
+ */
 public class Solution_2382_김덕진 {
 	static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	static StringTokenizer st;
-	static int T,N,M,K, micro[][], map[][][];
+	static StringBuilder sb = new StringBuilder();
+	static int T,N,M,K, micro[][], map[][];
 	static boolean[] consume;
 	
 	public static void main(String[] args) throws Exception {
@@ -17,91 +25,94 @@ public class Solution_2382_김덕진 {
 			M = Integer.parseInt(st.nextToken());	//격리 시간
 			K = Integer.parseInt(st.nextToken());	//미생물 군집의 개수
 			
-			map = new int[N][N][2];
+			map = new int[N][N];
 			micro = new int[K][4];
 			for (int i = 0; i < K; i++) {
 				st = new StringTokenizer(br.readLine());
 				for (int j = 0; j < 4; j++) {
 					micro[i][j] = Integer.parseInt(st.nextToken());
 				}
-				map[micro[i][0]][micro[i][1]][0] = micro[i][2];		//2차원 배열 한칸에(0인덱스) 미생물 수.
-				map[micro[i][0]][micro[i][1]][1] = i;				//1인덱스는 미생물 번호
+				map[micro[i][0]][micro[i][1]]++;
 			}
 			
-			consume = new boolean[K];	//흡수 여부 배열
+			consume = new boolean[K];	//미생물 흡수 여부 판별 배열
 			simulation();
-			
-			for (int i = 0; i < N; i++) {
-				for (int j = 0; j < N; j++) {
-					System.out.printf(map[i][j][0]+" ");
-				}
-				System.out.println();
-			}
-			
-			
 			int cnt = 0;
-			for (int i = 0; i < N; i++) {
-				for (int j = 0; j < N; j++) {
-					cnt += map[i][j][0];
-				}
+			for (int i = 0; i < K; i++) {
+				if(consume[i]) continue;	//흡수된 놈들은 제외
+				cnt += micro[i][2];			//살아남은 미생물의 수 합산
 			}
-			System.out.println("#" + tc + " " + cnt);
-			
+			sb.append("#" + tc + " " + cnt + "\n");
 		}
+		System.out.println(sb);
 	}
-	//(상: 1, 하: 2, 좌: 3, 우: 4)
+	
+	
 	private static void simulation() {
 		for (int time = 0; time < M; time++) {
+			
+			//1시간동안의 모든 미생물 이동
 			for (int i = 0; i < K; i++) {
-				if(consume[i]) continue;	//흡수 당한 미생물이면 pass
-				int x = micro[i][0];	//가로, 행
-				int y = micro[i][1];	//세로, 열
-				int n = map[x][y][0];	//미생물 수
-				int d = micro[i][3];	//이동 방향
+				if(consume[i]) continue;	//흡수 당한 미생물은 pass
+				int x = micro[i][0];
+				int y = micro[i][1];
+				int n = micro[i][2];
+				int d = micro[i][3];
 				
-				//이동방향 조정.
-				if(d == 1) x--;	//상
-				if(d == 2) x++;	//하
-				if(d == 3) y--; //좌
-				if(d == 4) y++;	//우
+				//(상: 1, 하: 2, 좌: 3, 우: 4)
+				if(d==1) x--;
+				if(d==2) x++;
+				if(d==3) y--;
+				if(d==4) y++;
 				
-				if(x==-1 || y==-1) {
-					System.out.println(x+ " " +y);
+				if(x==0 || x==N-1 || y==0 || y==N-1) {	//이동하는 곳이 빨간 약품, 가장자리에 닿았을 경우
+					n /= 2;		//미생물 수 반토박
+					
+					//방향 바꿔주기
+					d = (d == 1) ? 2 : (d == 2) ? 1 : (d == 3) ? 4 : 3;
 				}
 				
-				if(x==0 || x==N-1 || y==0 || y==N-1) { 	//가려는 이동 방향이 빨간 약품, 가장자리일 경우
-					n = n/2;	//미생물 수는 반으로.
-					//이동방향 반대로 조정.
-					if(d==1) d=2;
-					else if(d==2) d=1;
-					else if(d==3) d=4;
-					else if(d==4) d=3;
-				}
+				//map에 위치한 미생물 위치 전환
+				map[x][y]++;
+				map[micro[i][0]][micro[i][1]]--;
 				
-				if(map[x][y][0] > 0) {		//가려는 이동 방향에 미생물이 있는 경우
-					if(n > map[x][y][0]) {	//현재 미생물의 크기가 더 크다면
-						n+=map[x][y][0];	//흡수만 진행
-						consume[map[x][y][1]] = true;	//흡수당한 미생물 흡수 true 처리
-					}else {				//더 작다면(이동 방향에 있는 미생물이 더 크다면)
-						map[x][y][0] += n;	//이동 방향에 있는 미생물 수에 현재 미생물 더해주고
-						map[micro[i][0]][micro[i][1]][0] = 0;	//원래 있었던 자리는 없던 것처럼.
-						consume[i] = true;	//지금 미생물 흡수 처리
+				//바뀐 값 다시 넣어주기
+				micro[i][0] = x;
+				micro[i][1] = y;
+				micro[i][2] = n;
+				micro[i][3] = d;
+			}
+			
+			//모든 미생물들의 이동을 마친 뒤 흡수여부 판별
+			for (int i = 0; i < N; i++) {
+				for (int j = 0; j < N; j++) {
+					if(map[i][j] > 1) {		//맵에 모여있는 군집이 1개 이상, 여러 미생물이 모여있다면
+						int sum = 0;	//합산 해줄 변수
+						int big = -1;	//미생물 수(비교 변수)
+						int bigIdx = -1;	//제일 큰 군집 인덱스
+						
+						for (int k = 0; k < K; k++) {	//군집 배열 돌아보면서 1개 이상인 위치에 놓인 미생물 찾기
+							int x = micro[k][0];
+							int y = micro[k][1];
+							int n = micro[k][2];
+							if(x!=i || y!=j || consume[k]) continue;	//위치가 다르거나 이미 먹힌 애들이면 pass
+							sum += n;
+							if(big < n) {	//탐색중인 것 보다 현재값이 더 크면
+								big = n;
+								if(bigIdx != -1) consume[bigIdx] = true;	//직전 최대 흡수 처리
+								bigIdx = k;
+							}else {
+								consume[k] = true;	//최대보다 작은 미생물 흡수 처리.
+							}
+						}
+						
+						micro[bigIdx][2] = sum;		//제일 큰 놈한테 미생물 합산 값 넘김.
+						map[i][j] = 1;	//몇개가 있었는지는 모르겠지만 하나만 남김
 					}
 				}
-				
-				if(!consume[i]) {	//이동과정 중에 흡수 처리가 되지 않았다면
-					map[x][y][0] = n;	//나아가려고 하는 방향에 미생물 표시해주고
-					map[x][y][1] = i;	//미생물 번호까지.
-					map[micro[i][0]][micro[i][1]][0] = 0;	//원래 있었던 자리는 없던 것처럼.
-					micro[i][0] = x;
-					micro[i][1] = y;
-					micro[i][2] = n;
-					micro[i][3] = d;
-				}
-				
-			}
-
+			}			
 		}
+		
 	}
 
 }
