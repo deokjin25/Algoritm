@@ -79,7 +79,8 @@ public class Solution_2383_김덕진 {
 	private static void simulation(int remain) {
 		int time = 0;
 		
-		while(remain != 0 || stair1.size() != 0 || stair2.size() != 0) {
+		//남아 있는 사람도 없어야 하고 계단에 사람도 없어야 하고 대기중인 사람도 없어야 함
+		while(remain != 0 || stair1.size() != 0 || stair2.size() != 0 || wait1.size() != 0 || wait2.size() != 0) {
 			time++;
 			
 			for (int i = 0; i < human; i++) {
@@ -105,7 +106,7 @@ public class Solution_2383_김덕진 {
 				if(stair1.peek() == time) {	//계단 내부에 있는 사람이 빠져나올 시간이라면
 					stair1.poll();	//계단에서 빼내주기
 					continue;
-				}else {
+				}else {	//제일 앞에 있는 사람이 아직 나올 때가 아니면 뒤에 있는 사람도 마찬가지
 					break;
 				}					
 			}
@@ -123,9 +124,9 @@ public class Solution_2383_김덕진 {
 				while(stair1.size() < 3 && wait1.size() > 0) {	//계단 큐에 3명까지만 삽입
 					if(wait1.peek() < time) {	//계단 입구에 도착하면, 1분 후 아래칸으로 내려 갈 수 있다.
 						wait1.poll();
-						stair1.offer(time + stairPosition.get(0)[2]);
+						stair1.offer(time + stairPosition.get(0)[2]);	//현재 들어가는 시간 + 계단 소요시간
 						continue;
-					}else{
+					}else{	//대기중인 사람이 아직 계단에 들어갈 시간이 안됐다면 뒤도 마찬가지
 						break;
 					}
 				}
