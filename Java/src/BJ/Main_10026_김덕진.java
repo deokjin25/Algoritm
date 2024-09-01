@@ -2,7 +2,7 @@ package BJ;
 
 import java.io.*;
 
-public class Main_10026_김덕진 {
+public class Main_10026_김덕진{
 	static int N, normalCnt, blindCnt;
 	static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	static char[][] normal;
@@ -10,7 +10,7 @@ public class Main_10026_김덕진 {
 	static int dx[] = {1,-1,0,0};
 	static int dy[] = {0,0,1,-1};
 	
-	public static void main(String[] args) throws Exception {
+	public static void main(String[] args) throws Exception{
 		N = Integer.parseInt(br.readLine());
 		
 		normal = new char[N][N];	//색상표

@@ -17,7 +17,7 @@ public class Solution_2383_김덕진 {
 	
 	public static void main(String[] args) throws Exception {
 		T = Integer.parseInt(br.readLine());
-		for (int tc = 1; tc <= 10; tc++) {
+		for (int tc = 1; tc <= T; tc++) {
 			N = Integer.parseInt(br.readLine());
 			
 			humanPositon = new ArrayList<>();	//사람 위치 배열
@@ -149,23 +149,6 @@ public class Solution_2383_김덕진 {
 		min = Math.min(min, time);
 		
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 
 }
