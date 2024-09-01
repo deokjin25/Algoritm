@@ -3,7 +3,7 @@ package SWEA;
 import java.io.*;
 import java.util.*;
 
-public class Solution_1251_김덕진 {
+public class Solution_1251_kruskal_김덕진 {
 	static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	static StringTokenizer st;
 	static int T,N, parents[];
