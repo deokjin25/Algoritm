@@ -33,20 +33,20 @@ public class Solution_2115_김덕진 {
 					if(j+M > N) break;
 					for (int k = i; k < N; k++) {	//B 작업자의 벌꿀 채취 치작점
 						int m = 0;
-						if(k==i) m = j+M;
+						if(k==i) m = j+M;	//같은 줄일 때만 범위 값 따로 주고 나머지는 다 0에서 전부 탐색 
 						for (int p = m; p < N; p++) {
 							if(p+M > N) break;
 							
-							work1.clear();
+							work1.clear();	// 채취할 벌꿀 리스트
 							work2.clear();
-							work1Sum = 0;
+							work1Sum = 0;	// 조건에 맞게 선택된 꿀의 총량
 							work2Sum = 0;
 							
-							for (int w = j; w < j+M; w++) {
+							for (int w = j; w < j+M; w++) {	//M만큼 리스트에 넣어주기(1번 작업자는 j부터)
 								work1.add(map[i][w]);
 							}
 							
-							for (int w = p; w < p+M; w++) {
+							for (int w = p; w < p+M; w++) { //M만큼 리스트에 넣어주기(1번 작업자는 p부터)
 								work2.add(map[k][w]);
 							}
 							
@@ -72,12 +72,12 @@ public class Solution_2115_김덕진 {
 	}
 
 	private static void subSet2(int idx, Integer honey, double sum) {
-		if(honey > C) {
+		if(honey > C) {	//허용된 총량보다 많으면 종료
 			return;
 		}
 		
-		if(idx == work2.size() || honey == C) {
-			work2Sum = (int) Math.max(sum, work2Sum);
+		if(idx == work2.size() || honey == C) {		//모든 부분집합의 선택이 끝났거나 꿀이 최대치에 도달한 경우
+			work2Sum = (int) Math.max(sum, work2Sum);	//최대 꿀 갱신
 			return;
 		}
 		
