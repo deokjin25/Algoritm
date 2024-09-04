@@ -13,7 +13,7 @@ public class Solution_5215_DP_김덕진 {
 	static int T, N, L;
 	static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	static StringTokenizer st;
-	static int[][] scoreL;
+	static int[][] scoreL, dp;
 	static int maxFlavor;
 	
 	public static void main(String[] args) throws Exception {
@@ -31,31 +31,19 @@ public class Solution_5215_DP_김덕진 {
 				scoreL[i] = new int[]{score,cal};
 			}
 			
-			maxFlavor=0;
-			System.out.println("#"+tc+" "+hamburger(0, 0, 0, 0));
+			dp = new int[N][2];
+			dp[0] = scoreL[0];
+			dp[0] = scoreL[0];
+			
+			//칼로리 제한 기준 안 넘으면 그냥 다 선택
+			//현재값 선택할 때 !넘으면!  
+			
 			
 		}
 		
 
 	}
 
-	private static int hamburger(int idx, int totalCal, int scoreSum, int maxScore) {
-		if(idx == N) {
-			if(scoreSum > maxScore) {
-				maxScore=scoreSum;				
-			}
-			return maxScore;
-		}
-		
-		for (int i = idx; i < N; i++) {
-			int score = scoreL[i][0];	//해당 재료 맛 점수
-			int cal = scoreL[i][1]; 	//해당 재료 칼로리
-			if(totalCal+cal <= L) {
-				maxScore = hamburger(i+1, totalCal+cal, scoreSum+score, maxScore);	
-			}
-		}
-		
-		return maxScore;
-	}
+	
 
 }
