@@ -18,6 +18,7 @@ public class Main_1149_김덕진 {
 			price[i][1] = Integer.parseInt(st.nextToken());
 			price[i][2] = Integer.parseInt(st.nextToken());
 		}
+
 		dp = new int[N][3];
 		for (int i = 0; i < 3; i++) {
 			dp[0][i] = price[0][i];
