@@ -2,7 +2,7 @@ package SWEA;
 import java.io.*;
 import java.util.*;
 
-public class Solution_SWEA_5656 {
+public class Solution_5656_김덕진 {
     static int T, N, W, H;
     static int[][] map;
     static int[] dr = {-1, 1, 0, 0}; // 상, 하, 좌, 우

@@ -1,49 +1,48 @@
 package SWEA;
-/*
- * 민기는 햄버거의 맛은 최대한 유지하면서 정해진 칼로리를 넘지 않는 햄버거를 주문하여 먹으려고 한다.
- * 재료는 미리 만들어서 준비해놓기 때문에 조합에 들어가는 재료를 잘라서 조합해주지는 않고, 재료를 선택하면 준비해놓은 재료를 그대로 사용하여 조합해준다. 
- * 햄버거의 재료에 대한 맛을 자신의 오랜 경험을 통해 점수를 매겨놓았다.
- * 정해진 칼로리 이하의 조합 중에서 민기가 가장 선호하는 햄버거를 조합해주는 프로그램을 만들어보자.
- * 같은 재료를 여러 번 사용할 수 없으며, 햄버거의 조합의 제한은 칼로리를 제외하고는 없다. >> 조합
- */
+
 import java.io.*;
 import java.util.*;
 
 public class Solution_5215_DP_김덕진 {
-	static int T, N, L;
-	static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-	static StringTokenizer st;
-	static int[][] scoreL, dp;
-	static int maxFlavor;
-	
+
 	public static void main(String[] args) throws Exception {
-		T = Integer.parseInt(br.readLine());
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		
+		int T = Integer.parseInt(br.readLine());
+		
 		for (int tc = 1; tc <= T; tc++) {
-			st = new StringTokenizer(br.readLine());
-			N = Integer.parseInt(st.nextToken());	//재료의 수
-			L = Integer.parseInt(st.nextToken());	//제한 칼로리
+			StringTokenizer st = new StringTokenizer(br.readLine());
+			int N = Integer.parseInt(st.nextToken());	//물건 개수
+			int K = Integer.parseInt(st.nextToken());	//버틸 수 있는 무게
 			
-			scoreL = new int[N][2];	//재료의 맛과 칼로리 정보 배열
-			for (int i = 0; i < N; i++) {
+			int[][] arr = new int[N+1][2];
+			for (int i = 1; i <= N; i++) {
 				st = new StringTokenizer(br.readLine());
-				int score = Integer.parseInt(st.nextToken());
-				int cal = Integer.parseInt(st.nextToken());
-				scoreL[i] = new int[]{score,cal};
+				arr[i][0] = Integer.parseInt(st.nextToken());
+				arr[i][1] = Integer.parseInt(st.nextToken());
 			}
 			
-			dp = new int[N][2];
-			dp[0] = scoreL[0];
-			dp[0] = scoreL[0];
-			
-			//칼로리 제한 기준 안 넘으면 그냥 다 선택
-			//현재값 선택할 때 !넘으면!  
-			
-			
+			//dp의 행(재료 번호) 열(칼로리)
+			//특정 행 열 번호에서 같은 칼로리(같은 열)인데 위쪽(이전 재료)에서 갱신된 값과(이 경우 지금 재료 선택x)
+			//현재 칼로리에서 이전 선택(i-1)중 지금 재료의 칼로리만큼 뺐을 때 갱신된 값(j-cal)을 비교(이 경우 지금 재료 선택)
+			//지금있는 칼로리(j)상에서는 현재 재료를 선택할 수가 없을 땐 (j < cal)
+			//이전 선택에서 갱신된 값(i-1)과 전 칼로리(j-1)에서 갱신된 값을 비교 
+			int[][] dp = new int[N+1][K+1];
+			for (int i = 1; i <= N; i++) {
+				int score = arr[i][0];
+				int cal = arr[i][1];
+				for (int j = 1; j <= K; j++) {
+					if(j >= cal) {
+						dp[i][j] = Math.max(score, Math.max(dp[i-1][j-cal]+score  , dp[i-1][j]));
+					}else {
+						dp[i][j] = Math.max(dp[i-1][j], dp[i][j-1]);
+					}
+				}
+			}
+			System.out.println("#" + tc + " " + dp[N][K]);
 		}
 		
-
+		
 	}
-
-	
 
 }
