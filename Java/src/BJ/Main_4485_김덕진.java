@@ -59,7 +59,7 @@ public class Main_4485_김덕진 {
 				int nr = r + dr[i];
 				int nc = c + dc[i];
 				if(nr<0 || nc<0  || nr >= N  || nc >= N		//범위 밖이거나
-						 || minMap[nr][nc] <= cost + map[nr][nc]) continue;	//현재값(시작부터 특정 칸 까지의 비용) + 앞으로 가져갈 값 >= 미리 계산된 값이면 pass
+						 || minMap[nr][nc] <= cost + map[nr][nc]) continue;	//미리 계산된 값 <= 현재값(시작부터 특정 칸 까지의 비용) + 앞으로 가져갈 값이면 pass
 				minMap[nr][nc] = cost + map[nr][nc];	// 현재값+앞으로 가져갈 값이 이미 갱신된 값보다 작으니 재갱신(사실 우선순위 큐라 제일 먼저 들어오는게 제일 작음)
 				pq.offer(new int[] {nr,nc,minMap[nr][nc]});	//앞으로 가져갈 위치랑, 그 때의 값(map[nr][nc]가 아니라 시작위치부터 칸 "까지의" 비용)
 			}
