@@ -248,7 +248,7 @@
     <sharedElements xsi:type="basic:Part" xmi:id="_uGktoFSxEe-zK48m0gkeVg" elementId="org.eclipse.ui.views.ProblemView" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView" label="Problems" iconURI="platform:/plugin/org.eclipse.ui.ide/icons/full/eview16/problems_view.png" tooltip="" closeable="true">
       <persistedState key="originalCompatibilityViewClass" value="org.eclipse.ui.internal.views.markers.ProblemsView"/>
       <persistedState key="originalCompatibilityViewBundle" value="org.eclipse.ui.ide"/>
-      <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;view PRIMARY_SORT_FIELD=&quot;org.eclipse.ui.ide.severityAndDescriptionField&quot; categoryGroup=&quot;org.eclipse.ui.ide.severity&quot; markerContentGenerator=&quot;org.eclipse.ui.ide.problemsGenerator&quot;>&#xD;&#xA;&lt;expanded>&#xD;&#xA;&lt;category IMemento.internal.id=&quot;Warnings (1 item)&quot;/>&#xD;&#xA;&lt;/expanded>&#xD;&#xA;&lt;columnWidths org.eclipse.ui.ide.locationField=&quot;105&quot; org.eclipse.ui.ide.markerType=&quot;105&quot; org.eclipse.ui.ide.pathField=&quot;140&quot; org.eclipse.ui.ide.resourceField=&quot;105&quot; org.eclipse.ui.ide.severityAndDescriptionField=&quot;350&quot;/>&#xD;&#xA;&lt;visible IMemento.internal.id=&quot;org.eclipse.ui.ide.severityAndDescriptionField&quot;/>&#xD;&#xA;&lt;visible IMemento.internal.id=&quot;org.eclipse.ui.ide.resourceField&quot;/>&#xD;&#xA;&lt;visible IMemento.internal.id=&quot;org.eclipse.ui.ide.pathField&quot;/>&#xD;&#xA;&lt;visible IMemento.internal.id=&quot;org.eclipse.ui.ide.locationField&quot;/>&#xD;&#xA;&lt;visible IMemento.internal.id=&quot;org.eclipse.ui.ide.markerType&quot;/>&#xD;&#xA;&lt;/view>"/>
+      <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;view PRIMARY_SORT_FIELD=&quot;org.eclipse.ui.ide.severityAndDescriptionField&quot; categoryGroup=&quot;org.eclipse.ui.ide.severity&quot; markerContentGenerator=&quot;org.eclipse.ui.ide.problemsGenerator&quot;>&#xD;&#xA;&lt;columnWidths org.eclipse.ui.ide.locationField=&quot;105&quot; org.eclipse.ui.ide.markerType=&quot;105&quot; org.eclipse.ui.ide.pathField=&quot;140&quot; org.eclipse.ui.ide.resourceField=&quot;105&quot; org.eclipse.ui.ide.severityAndDescriptionField=&quot;350&quot;/>&#xD;&#xA;&lt;visible IMemento.internal.id=&quot;org.eclipse.ui.ide.severityAndDescriptionField&quot;/>&#xD;&#xA;&lt;visible IMemento.internal.id=&quot;org.eclipse.ui.ide.resourceField&quot;/>&#xD;&#xA;&lt;visible IMemento.internal.id=&quot;org.eclipse.ui.ide.pathField&quot;/>&#xD;&#xA;&lt;visible IMemento.internal.id=&quot;org.eclipse.ui.ide.locationField&quot;/>&#xD;&#xA;&lt;visible IMemento.internal.id=&quot;org.eclipse.ui.ide.markerType&quot;/>&#xD;&#xA;&lt;/view>"/>
       <tags>View</tags>
       <tags>categoryTag:General</tags>
       <menus xmi:id="_ugIdIFSxEe-zK48m0gkeVg" elementId="org.eclipse.ui.views.ProblemView">
@@ -372,7 +372,11 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_t4WEYFSxEe-zK48m0gkeVg" elementId="org.eclipse.ui.workbench.file">
         <tags>Draggable</tags>
+<<<<<<< HEAD
         <children xsi:type="menu:HandledToolItem" xmi:id="_gHJbwH7qEe-5RaiK1Wrtfg" elementId="print" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" command="_thAihFSxEe-zK48m0gkeVg"/>
+=======
+        <children xsi:type="menu:HandledToolItem" xmi:id="_Wp_igHafEe-3puZc65J1-g" elementId="print" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" command="_thAihFSxEe-zK48m0gkeVg"/>
+>>>>>>> 720f948140972d1d71221181e65ed271b9ed3dd1
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_t4WEYVSxEe-zK48m0gkeVg" elementId="group.edit" toBeRendered="false">
         <tags>toolbarSeparator</tags>
@@ -380,8 +384,13 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_t4WrcFSxEe-zK48m0gkeVg" elementId="org.eclipse.ui.workbench.edit">
         <tags>Draggable</tags>
+<<<<<<< HEAD
         <children xsi:type="menu:HandledToolItem" xmi:id="_gHKC0H7qEe-5RaiK1Wrtfg" elementId="undo" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/undo_edit.png" tooltip="Undo" enabled="false" command="_tg51D1SxEe-zK48m0gkeVg"/>
         <children xsi:type="menu:HandledToolItem" xmi:id="_gHKC0X7qEe-5RaiK1Wrtfg" elementId="redo" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/redo_edit.png" tooltip="Redo" enabled="false" command="_tg8RG1SxEe-zK48m0gkeVg"/>
+=======
+        <children xsi:type="menu:HandledToolItem" xmi:id="_WqAwonafEe-3puZc65J1-g" elementId="undo" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/undo_edit.png" tooltip="Undo" enabled="false" command="_tg51D1SxEe-zK48m0gkeVg"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_WqBXsHafEe-3puZc65J1-g" elementId="redo" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/redo_edit.png" tooltip="Redo" enabled="false" command="_tg8RG1SxEe-zK48m0gkeVg"/>
+>>>>>>> 720f948140972d1d71221181e65ed271b9ed3dd1
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_t4WrcVSxEe-zK48m0gkeVg" elementId="additions" toBeRendered="false">
         <tags>toolbarSeparator</tags>
@@ -405,7 +414,11 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_t4ZHsFSxEe-zK48m0gkeVg" elementId="org.eclipse.ui.workbench.navigate">
         <tags>Draggable</tags>
+<<<<<<< HEAD
         <children xsi:type="menu:HandledToolItem" xmi:id="_gHKp5X7qEe-5RaiK1Wrtfg" elementId="org.eclipse.ui.window.pinEditor" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" enabled="false" type="Check" command="_tg-tV1SxEe-zK48m0gkeVg"/>
+=======
+        <children xsi:type="menu:HandledToolItem" xmi:id="_WqDM4HafEe-3puZc65J1-g" elementId="org.eclipse.ui.window.pinEditor" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" enabled="false" type="Check" command="_tg-tV1SxEe-zK48m0gkeVg"/>
+>>>>>>> 720f948140972d1d71221181e65ed271b9ed3dd1
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_t4ZHsVSxEe-zK48m0gkeVg" elementId="group.editor" toBeRendered="false">
         <tags>toolbarSeparator</tags>
