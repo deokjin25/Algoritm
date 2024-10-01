@@ -2,14 +2,12 @@ package BJ;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class Main_7579_김덕진 {
 	static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	static StringTokenizer st;
-	static int N, M, marr[], carr[];
-	static int dp[][] = new int[101][10000001];
+	static int N, M, marr[], carr[], dp[][];
 
 	public static void main(String[] args) throws Exception {
 		st = new StringTokenizer(br.readLine());
@@ -17,37 +15,39 @@ public class Main_7579_김덕진 {
 		M = Integer.parseInt(st.nextToken()); //확보해야 하는 메모리
 		
 		st = new StringTokenizer(br.readLine());
-		marr = new int[N+1];
+		marr = new int[N+1];		//각 앱이 사용중인 메모리의 바이트 수
 		for (int i = 1; i <= N; i++) {
 			marr[i] = Integer.parseInt(st.nextToken());
 		}
 		
 		st = new StringTokenizer(br.readLine());
-		carr = new int[M+1];
+		carr = new int[N+1];	//각 앱을 비활성화 했을 경우의 비용
 		for (int i = 1; i <= N; i++) {
 			carr[i] = Integer.parseInt(st.nextToken());
 		}
 		
-		dp = new int[N+1][M+1];
+		//행: 앱(Ai) 열: 비용
+		//dp[i][j]: j까지의 비용을 지불 했을 때 취할 수 있는 메모리 최대 값
+		//Max j: 100*100(최대 100개의 앱, 최대 100의 비용이므로, 모든 앱의 비용이 100일 수 있다.)
+		dp = new int[N+1][N*100+1];
 		for (int i = 1; i <= N; i++) {
-			st = new StringTokenizer(br.readLine());
-			
-			for (int j = 1; j <= M; j++) {
-				if(j < V) {
-					dp[i][j] = Math.max(dp[i-1][j], dp[i][j]);
+			for (int j = 0; j <= N*100; j++) {
+				if(j < carr[i]) {
+					dp[i][j] = dp[i-1][j];
 				}else {
-					dp[i][j] = Math.max(dp[i][j], dp[i-1][j]);
-					dp[i][j] = Math.max(dp[i][j], dp[i-1][j-V] + C);
+					dp[i][j] = Math.max(dp[i-1][j], dp[i-1][j-carr[i]] + marr[i]);
 				}
 			}
+			
 		}
 		
-		//물건과 부피에 따라 변하는 배열 확인 검수 코드 
-		for (int i = 0; i < N+1; i++) {
-			System.out.println(Arrays.toString(dp[i]));
+		//가장 작은 비용부터 살펴보면서 목표 메모리에 도달하면 출력 및 종료
+		for (int i = 0; i <= N*100; i++) {
+			if(dp[N][i] >= M) {
+				System.out.println(i);
+				break;
+			}
 		}
-		
-		System.out.println(dp[N][M]);
 		
 		
 	}

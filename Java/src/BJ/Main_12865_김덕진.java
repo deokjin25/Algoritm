@@ -3,7 +3,7 @@ package BJ;
 import java.io.*;
 import java.util.*;
 
-public class Main_BJ_12865 {
+public class Main_12865_김덕진 {
 
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
