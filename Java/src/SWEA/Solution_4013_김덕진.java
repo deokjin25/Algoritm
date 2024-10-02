@@ -2,7 +2,7 @@ package SWEA;
 import java.io.*;
 import java.util.*;
 
-public class Solution_SWEA_4013 {
+public class Solution_4013_김덕진{
 	static int T, K;	//총 TC, 각 입력 TC
 	static String[] m1, m2, m3, m4;	//자석 배열
 	static BufferedReader br;
