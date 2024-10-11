@@ -3,6 +3,9 @@ package BJ;
 import java.io.*;
 import java.util.*;
 
+/*
+ * 전략:  
+ */
 
 public class Main_16236_김덕진 {
 	static BufferedReader br= new BufferedReader(new InputStreamReader(System.in));
