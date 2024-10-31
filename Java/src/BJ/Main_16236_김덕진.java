@@ -4,7 +4,9 @@ import java.io.*;
 import java.util.*;
 
 /*
- * 전략:  
+ * 전략
+ * 아기 상어의 현 위치에서 주어진 기준(거리 우선, x 우선, y 우선)에 따른 먹이 탐색(bfs)
+ * 이후 모든 맵 상태 조건 초기화 이후 위의 과정을 반복(탐색되는 먹이가 없을 때까지)
  */
 
 public class Main_16236_김덕진 {
@@ -26,16 +28,17 @@ public class Main_16236_김덕진 {
 			super();
 			this.x = x;
 			this.y = y;
-			this.s = s;
-			this.e = e;
-			this.t = t;
+			this.s = s;	//현재 아기 상어 크기
+			this.e = e;	//현재 크기에서 잡아먹은 물고기 수
+			this.t = t;	//이동 시간
 		}
 	}
 	
 	static class Fish {
 		int x;
 		int y;
-		int d;
+		int d;	//상어로 부터의 이동거리
+
 		public Fish(int x, int y, int d) {
 			super();
 			this.x = x;
@@ -68,13 +71,15 @@ public class Main_16236_김덕진 {
 		}
 		
 		int ans = 0;
+		//처음엔 pq에 아무것도 없으니까 do-while 사용
 		do {
 			pq.clear();
 			bfs(bs);
-			if(pq.isEmpty()) break;
-			Fish eat = pq.peek();
+			if(pq.isEmpty()) break;	//bfs 다녀왔는데 pq에 아무것도 없으면 종료
+			//poll() 처리 하면 먹을 수 있는 물고기가 하나밖에 없을 때 while문에 걸림(이후 탐색에서 추가 먹이 발견될 수 있음)
+			Fish eat = pq.peek();	//때문에 peek() 처리
 			map[eat.x][eat.y] = 0;
-			bs.x = eat.x;
+			bs.x = eat.x;	//아기 상어 위치 갱신
 			bs.y = eat.y;
 			if(++bs.e == bs.s) {
 				bs.e = 0;
@@ -82,7 +87,7 @@ public class Main_16236_김덕진 {
 			}
 			ans += eat.d;
 			
-			///////////
+			//디버깅용 코드
 //			System.out.println("================");
 //			for (int i = 0; i < N; i++) {
 //				System.out.println(Arrays.toString(map[i]));
