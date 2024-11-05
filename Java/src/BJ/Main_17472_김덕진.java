@@ -3,7 +3,7 @@ package BJ;
 import java.io.*;
 import java.util.*;
 
-public class Main_BJ_17472 {
+public class Main_17472_김덕진 {
 	static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	static StringTokenizer st;
 	static int N, M, map[][], parents[];
