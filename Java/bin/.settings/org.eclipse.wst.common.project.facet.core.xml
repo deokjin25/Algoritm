@@ -2,4 +2,5 @@
 <faceted-project>
   <runtime name="jre"/>
   <secondary-runtime name="LibericaJDK-17"/>
+  <installed facet="java" version="17"/>
 </faceted-project>

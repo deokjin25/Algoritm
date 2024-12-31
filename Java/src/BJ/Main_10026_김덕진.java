@@ -12,7 +12,7 @@ public class Main_10026_김덕진{
 	
 	public static void main(String[] args) throws Exception{
 		N = Integer.parseInt(br.readLine());
-		
+		syste
 		normal = new char[N][N];	//색상표
 		for (int i = 0; i < N; i++) {
 			normal[i] = br.readLine().toCharArray();
